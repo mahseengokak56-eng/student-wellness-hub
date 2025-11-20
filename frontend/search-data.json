@@ -1,0 +1,10 @@
+[
+    { "name": "Meditation Techniques", "url": "resources.html#meditation" },
+    { "name": "Mindfulness Apps", "url": "resources.html#mindfulness" },
+    { "name": "Healthcare Helpline", "url": "resources.html#helpline" },
+    { "name": "Breathing Exercises", "url": "breathing.html#breathing" },
+
+    { "name": "Motivational Quote 1", "url": "quotes.html#quote1" },
+    { "name": "Inspirational Quote 2", "url": "quotes.html#quote2" },
+    { "name": "Life Advice Quote", "url": "quotes.html#quote3" }
+]

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quotes | Student Wellness Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a2d2ff, #cdb4db);
+      color: #1e3a5f;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: flex-start;
+    }
+
+    header {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    main {
+      width: 90%;
+      max-width: 1000px;
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2b2d42;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      text-shadow: 0 1px 4px rgba(255,255,255,0.3);
+    }
+
+    .quotes-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quote-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(0, 0, 0, 0.05);
+      border-radius: 20px;
+      padding: 1.8rem;
+      color: #1e3a5f;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: fadeIn 0.6s ease both;
+      width: 80%;
+      max-width: 600px;
+      margin-bottom: 25px;
+    }
+
+    .quote-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .quote-text {
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      color: #1d3557;
+    }
+
+    .quote-author {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0077b6;
+      text-align: right;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      padding: 15px;
+      color: #1e3a5f;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.4);
+      width: 100%;
+      backdrop-filter: blur(4px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .category-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .category-buttons button {
+      background-color: rgba(0, 119, 182, 0.8);
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      padding: 10px 22px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-buttons button:hover {
+      background-color: #023e8a;
+      transform: scale(1.05);
+    }
+
+    /* --- Arrows & Bookmark (below quote) --- */
+    .nav-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 10px;
+    }
+
+    .nav-btn, .bookmark-btn {
+      background-color: #0077b6;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-btn:hover { background-color: #023e8a; }
+
+    .bookmark-btn {
+      background-color: #ffa62b;
+    }
+
+    .bookmark-btn:hover {
+      background-color: #ff8500;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Student Wellness Hub</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="breathing.html">Breathing</a> |
+      <a href="resources.html">Resources</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="category-title">Choose a Quote Category 🌼</h2>
+
+    <div class="category-buttons">
+      <button onclick="loadCategory('motivation')">Motivation</button>
+      <button onclick="loadCategory('resilience')">Resilience</button>
+      <button onclick="loadCategory('balance')">Balance & Well-being</button>
+    </div>
+
+    <div id="quotes-grid" class="quotes-grid"></div>
+
+    <!-- Navigation buttons BELOW quote box -->
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="prevQuote()">⟵ Prev</button>
+      <button class="bookmark-btn" onclick="bookmarkQuote()">🔖 Bookmark</button>
+      <button class="nav-btn" onclick="nextQuote()">Next ⟶</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Student Wellness Hub | Stay Inspired 💙</p>
+  </footer>
+
+  <script>
+    let quotes = [];
+    let index = 0;
+    let currentCategory = '';
+
+    const savedData = localStorage.getItem('quoteBookmark');
+    if (savedData) {
+      const parsed = JSON.parse(savedData);
+      currentCategory = parsed.category;
+      index = parsed.index;
+    }
+
+    async function loadCategory(category) {
+      const title = document.getElementById("category-title");
+      const grid = document.getElementById("quotes-grid");
+      title.textContent = category.charAt(0).toUpperCase() + category.slice(1) + " Quotes 🌿";
+      grid.innerHTML = "<p style='color:#1e3a5f'>Loading...</p>";
+
+      try {
+        const res = await fetch(`http://localhost:5000/quotes/${category}`);
+        quotes = await res.json();
+        currentCategory = category;
+        showQuotes();
+      } catch (error) {
+        console.error(error);
+        grid.innerHTML = "<p style='color:#b00020'>❌ Failed to load quotes. Please check your backend.</p>";
+      }
+    }
+
+    function showQuotes() {
+      const grid = document.getElementById("quotes-grid");
+      const q = quotes[index];
+      grid.innerHTML = `
+        <div class="quote-card">
+          <p class="quote-text">“${q.text}”</p>
+          <p class="quote-author">– ${q.author}</p>
+        </div>
+      `;
+    }
+
+    function nextQuote() {
+      if (!quotes.length) return;
+      index = (index + 1) % quotes.length;
+      showQuotes();
+    }
+
+    function prevQuote() {
+      if (!quotes.length) return;
+      index = (index - 1 + quotes.length) % quotes.length;
+      showQuotes();
+    }
+
+    function bookmarkQuote() {
+      if (!currentCategory || !quotes.length) return alert("Please load a category first!");
+      localStorage.setItem("quoteBookmark", JSON.stringify({ category: currentCategory, index }));
+      alert("🔖 Bookmark saved! You'll continue from here next time.");
+    }
+
+    window.onload = () => {
+      if (currentCategory) loadCategory(currentCategory);
+    };
+  </script>
+</body>
+</html>

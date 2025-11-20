@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources | Student Wellness Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* 🌈 General Layout */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a2d2ff, #cdb4db);
+      color: #1e3a5f;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      margin-top: 25px;
+      animation: fadeInDown 1s ease;
+    }
+
+    header h1 {
+      font-size: 2.3rem;
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: 600;
+    }
+
+    nav a:hover { color: #023e8a; }
+
+    main {
+      width: 92%;
+      max-width: 1100px;
+      text-align: center;
+      margin-top: 40px;
+      padding-bottom: 60px;
+    }
+
+    h2 {
+      color: #2b2d42;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    /* 🌿 Resource Cards */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .resource-card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 18px;
+      padding: 1.8rem;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .resource-card:hover { transform: translateY(-8px); }
+
+    .resource-title {
+      color: #0077b6;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* 🌙 Phase Cards (Sleep & Study) */
+    .phase-container {
+      margin-top: 20px;
+    }
+
+    .phase-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .phase-header {
+      background: linear-gradient(135deg, #00b4d8, #0077b6);
+      color: #fff;
+      padding: 15px 20px;
+      text-align: left;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s ease;
+    }
+
+    .phase-header:hover {
+      background: linear-gradient(135deg, #0077b6, #023e8a);
+    }
+
+    .phase-header span {
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .phase-content {
+      padding: 15px 20px;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .phase-content.active {
+      display: block;
+    }
+
+    .steps-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      text-align: left;
+    }
+
+    .step-box {
+      background: #f1f9ff;
+      border-left: 5px solid #0077b6;
+      border-radius: 10px;
+      padding: 12px 15px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .step-box:hover {
+      background: #e6f7ff;
+      transform: scale(1.02);
+    }
+
+    .step-box::before {
+      content: "✨ ";
+    }
+
+    .app-link, .helpline {
+      display: block;
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      margin: 8px auto;
+      width: fit-content;
+      font-weight: 500;
+      transition: transform 0.3s ease;
+    }
+
+    .app-link:hover, .helpline:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #00b4d8, #0096c7);
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      background: rgba(255,255,255,0.4);
+      width: 100%;
+      color: #1e3a5f;
+      margin-top: auto;
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Student Wellness Hub</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="breathing.html">Breathing</a> |
+      <a href="quotes.html">Quotes</a> |
+      <a href="resources.html">Resources</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>🌿 Explore Helpful Resources</h2>
+    <div class="resources-grid">
+      <div class="resource-card" onclick="loadCategory('sleep')">
+        <h3 class="resource-title">🛌 Sleep Management Guide</h3>
+      </div>
+      <div class="resource-card" onclick="loadCategory('study')">
+        <h3 class="resource-title">📘 Stress-Free Study Tips</h3>
+      </div>
+      <div class="resource-card" onclick="loadCategory('mindfulness')">
+        <h3 class="resource-title">🧘 Mindfulness & Meditation Apps</h3>
+      </div>
+      <div class="resource-card" onclick="loadCategory('healthcare')">
+        <h3 class="resource-title">🏥 Healthcare Helpline Numbers</h3>
+      </div>
+    </div>
+
+    <div id="resource-content"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Student Wellness Hub | Nurture Your Mind 💙</p>
+  </footer>
+
+  <script>
+    async function loadCategory(category) {
+      const content = document.getElementById("resource-content");
+      content.innerHTML = "<p>🌸 Loading...</p>";
+
+      try {
+        const res = await fetch(`http://localhost:5000/resources/${category}`);
+        const data = await res.json();
+
+        // 🧘 Mindfulness apps
+        if (category === "mindfulness") {
+          content.innerHTML = data.map(app =>
+            `<a class="app-link" href="${app.url}" target="_blank">🧘 ${app.name}</a>`
+          ).join("");
+        } 
+        // 🏥 Healthcare helplines
+        else if (category === "healthcare") {
+          content.innerHTML = data.map(h => `
+            <div class="phase-card">
+              <h3 class="section-heading">${h.name}</h3>
+              <p>${h.location}</p>
+              <p><em>${h.type}</em></p>
+              <a class="helpline" href="tel:${h.contact}">📞 ${h.contact}</a>
+            </div>
+          `).join("");
+        } 
+        // 🌙 Sleep / 📘 Study — Collapsible user-friendly guide
+        else {
+          content.innerHTML = data.map((phase, index) => `
+            <div class="phase-card">
+              <div class="phase-header" onclick="togglePhase('${category}-${index}')">
+                <span>${phase.phase}</span>
+                <span>⬇️</span>
+              </div>
+              <div class="phase-content" id="phase-${category}-${index}">
+                <div class="steps-list">
+                  ${phase.steps.map(step => `<div class="step-box">${step}</div>`).join('')}
+                </div>
+              </div>
+            </div>
+          `).join("");
+        }
+      } catch (error) {
+        content.innerHTML = "<p>⚠️ Unable to load data. Please check your backend.</p>";
+      }
+
+      window.scrollTo({ top: content.offsetTop - 50, behavior: "smooth" });
+    }
+
+    function togglePhase(id) {
+      const content = document.getElementById(`phase-${id}`);
+      content.classList.toggle("active");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get("category");
+      if (category) loadCategory(category);
+    });
+  </script>
+</body>
+</html>

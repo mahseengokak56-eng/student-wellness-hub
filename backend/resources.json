@@ -1,0 +1,287 @@
+{
+  "sleep": [
+    {
+      "phase": "1️⃣ Prepare for Rest",
+      "steps": [
+        "Set a fixed bedtime and wake-up time daily.",
+        "Stop using phones, laptops, or TVs 30 minutes before bed.",
+        "Avoid caffeine, chocolate, or heavy food after 7 PM.",
+        "Take a light dinner at least 2 hours before sleeping.",
+        "Keep your room dark, cool, and quiet.",
+        "Use curtains or an eye mask to block light.",
+        "Avoid emotional conversations before sleeping.",
+        "Write down tomorrow’s tasks before bed to clear your mind.",
+        "Play calm instrumental or white noise music.",
+        "Ensure your pillow and mattress are comfortable."
+      ]
+    },
+    {
+      "phase": "2️⃣ Calm the Mind",
+      "steps": [
+        "Practice deep breathing (inhale 4, hold 7, exhale 8).",
+        "Try guided meditation or relaxation apps.",
+        "Avoid negative news or social media before bed.",
+        "Visualize yourself in a peaceful place.",
+        "Use lavender or chamomile aroma therapy.",
+        "Keep a gratitude journal next to your bed.",
+        "Focus on slow breathing to lower your heart rate.",
+        "Say positive affirmations to end your day calmly.",
+        "Keep your thoughts kind and self-forgiving.",
+        "Avoid screens at least 1 hour before sleep."
+      ]
+    },
+    {
+      "phase": "3️⃣ Relax the Body",
+      "steps": [
+        "Take a warm shower to relax your muscles.",
+        "Do gentle yoga or stretching for 5 minutes.",
+        "Wear light and breathable sleepwear.",
+        "Avoid lying in bed if you’re not sleepy — read instead.",
+        "Avoid alcohol or smoking before sleeping.",
+        "Massage your feet or palms lightly.",
+        "Relax each body part starting from toes to head.",
+        "Sleep on your side for smoother breathing.",
+        "Keep pets off your bed if they wake you up.",
+        "Maintain clean and comfortable sheets."
+      ]
+    },
+    {
+      "phase": "4️⃣ Maintain the Rhythm",
+      "steps": [
+        "Wake up with natural light if possible.",
+        "Don’t hit the snooze button repeatedly.",
+        "Expose yourself to morning sunlight daily.",
+        "Avoid irregular nap timings.",
+        "Sleep 7–9 hours daily based on your need.",
+        "Avoid oversleeping during weekends.",
+        "Have consistent bedtime rituals.",
+        "Keep consistent eating hours.",
+        "Avoid checking your phone first thing in the morning.",
+        "Smile or say something positive after waking up."
+      ]
+    },
+    {
+      "phase": "5️⃣ Long-Term Sleep Habits",
+      "steps": [
+        "Don’t compare your sleep pattern with others.",
+        "Use sleep tracking apps only to monitor improvement.",
+        "Avoid high sugar late in the night.",
+        "Keep your sleeping area organized.",
+        "Limit mental work just before bed.",
+        "Meditate for 10 minutes daily.",
+        "Respect your body’s rest cycles.",
+        "Keep your bed for sleep, not for studying or eating.",
+        "Prioritize rest as part of mental health.",
+        "Treat sleep as daily self-care, not laziness."
+      ]
+    }
+  ],
+
+  "study": [
+    {
+      "phase": "1️⃣ Plan Smartly",
+      "steps": [
+        "Make a daily study plan and follow it consistently.",
+        "Divide your subjects into small chapters or topics.",
+        "Start your study early in the day for better focus.",
+        "Use planners or apps to organize your schedule.",
+        "Set short, realistic goals every day.",
+        "Avoid procrastination by setting deadlines.",
+        "Keep your workspace clean and simple.",
+        "Use color-coded notes for clarity.",
+        "Keep a fixed study spot that signals your brain to focus.",
+        "Begin with tougher topics first."
+      ]
+    },
+    {
+      "phase": "2️⃣ Learn Effectively",
+      "steps": [
+        "Focus on understanding concepts, not memorizing words.",
+        "Teach what you learned to someone else.",
+        "Summarize chapters in your own words.",
+        "Use flashcards for quick revisions.",
+        "Create mind maps for difficult topics.",
+        "Highlight key formulas and points.",
+        "Study actively by solving examples.",
+        "Watch educational videos if stuck.",
+        "Ask doubts immediately instead of piling them up.",
+        "Practice old question papers weekly."
+      ]
+    },
+    {
+      "phase": "3️⃣ Stay Healthy While Studying",
+      "steps": [
+        "Eat nutritious snacks like fruits or dry fruits.",
+        "Drink plenty of water throughout the day.",
+        "Take short breaks every 45–60 minutes.",
+        "Do light stretches between study sessions.",
+        "Avoid junk food or heavy meals during study.",
+        "Get at least 7–8 hours of sleep every night.",
+        "Avoid overloading your brain before bed.",
+        "Sit in a good posture with proper back support.",
+        "Reduce noise distractions.",
+        "Take a short walk to refresh your mind."
+      ]
+    },
+    {
+      "phase": "4️⃣ Build Focus and Motivation",
+      "steps": [
+        "Keep your phone away while studying.",
+        "Use the Pomodoro technique: 25 minutes focus, 5 minutes rest.",
+        "Reward yourself after completing tasks.",
+        "Avoid multitasking — study one subject at a time.",
+        "Write motivational quotes near your desk.",
+        "Avoid comparing your speed with others.",
+        "Visualize success before exams.",
+        "Play calm focus music if needed.",
+        "Avoid self-doubt — trust your preparation.",
+        "Take breaks without feeling guilty."
+      ]
+    },
+    {
+      "phase": "5️⃣ Maintain Balance",
+      "steps": [
+        "Don’t study for more than 3 hours continuously.",
+        "Plan revision days before exams.",
+        "Use weekends to review older topics.",
+        "Avoid last-minute cramming the whole night.",
+        "Talk to mentors if you feel stressed.",
+        "Mix study with hobbies to stay refreshed.",
+        "Meditate or do breathing exercises daily.",
+        "Take one free day per week to reset your mind.",
+        "Keep positive affirmations near your table.",
+        "Celebrate your small progress every week."
+      ]
+    }
+  ],
+
+  "mindfulness": [
+    { "name": "Headspace", "url": "https://www.headspace.com/" },
+    { "name": "Calm", "url": "https://www.calm.com/" },
+    { "name": "Insight Timer", "url": "https://insighttimer.com/" },
+    { "name": "Smiling Mind", "url": "https://www.smilingmind.com.au/" },
+    { "name": "Simple Habit", "url": "https://www.simplehabit.com/" },
+    { "name": "Aura", "url": "https://www.aurahealth.io/" },
+    { "name": "Breethe", "url": "https://breethe.com/" },
+    { "name": "10% Happier", "url": "https://www.tenpercent.com/" },
+    { "name": "MyLife Meditation", "url": "https://my.life/" },
+    { "name": "The Mindfulness App", "url": "https://themindfulnessapp.com/" }
+  ],
+
+  "healthcare": [
+    {
+      "name": "NIMHANS – National Institute of Mental Health & Neurosciences",
+      "location": "Bengaluru, Karnataka",
+      "contact": "+918026992188",
+      "type": "Mental Health Institute"
+    },
+    {
+      "name": "Victoria Hospital",
+      "location": "Bengaluru, Karnataka",
+      "contact": "+918022293000",
+      "type": "General Hospital"
+    },
+    {
+      "name": "St. John’s Medical College Hospital",
+      "location": "Bengaluru, Karnataka",
+      "contact": "+918025505000",
+      "type": "Multi-specialty Hospital"
+    },
+    {
+      "name": "Kasturba Medical College Hospital",
+      "location": "Manipal, Karnataka",
+      "contact": "+918202922273",
+      "type": "Medical & Psychiatric Support"
+    },
+    {
+      "name": "KIMS Hospital",
+      "location": "Hubballi, Karnataka",
+      "contact": "+918362374122",
+      "type": "Medical College Hospital"
+    },
+    {
+      "name": "Father Muller Medical College Hospital",
+      "location": "Mangaluru, Karnataka",
+      "contact": "+918242230008",
+      "type": "Multi-specialty Hospital"
+    },
+    {
+      "name": "Bowring and Lady Curzon Hospital",
+      "location": "Bengaluru, Karnataka",
+      "contact": "+918022287600",
+      "type": "Government Hospital"
+    },
+    {
+      "name": "Sri Jayadeva Institute of Cardiovascular Sciences",
+      "location": "Bengaluru, Karnataka",
+      "contact": "+918022940400",
+      "type": "Heart & Emergency Care"
+    },
+    {
+      "name": "AIIMS Delhi – Psychiatry Department",
+      "location": "New Delhi",
+      "contact": "+911126592924",
+      "type": "Psychiatric Hospital"
+    },
+    {
+      "name": "Institute of Human Behaviour & Allied Sciences (IHBAS)",
+      "location": "Delhi",
+      "contact": "+911122503602",
+      "type": "Mental Health Institute"
+    },
+    {
+      "name": "Tata Memorial Hospital",
+      "location": "Mumbai, Maharashtra",
+      "contact": "+912224172000",
+      "type": "General Hospital"
+    },
+    {
+      "name": "Apollo Hospitals",
+      "location": "Chennai, Tamil Nadu",
+      "contact": "+914426821000",
+      "type": "Multi-specialty Hospital"
+    },
+    {
+      "name": "Sahyadri Hospital – Psychiatry Wing",
+      "location": "Pune, Maharashtra",
+      "contact": "+912066826000",
+      "type": "Psychiatric Hospital"
+    },
+    {
+      "name": "Asha Hospital",
+      "location": "Hyderabad, Telangana",
+      "contact": "+914066678899",
+      "type": "Psychiatric Care"
+    },
+    {
+      "name": "Central Institute of Psychiatry",
+      "location": "Ranchi, Jharkhand",
+      "contact": "+916512451519",
+      "type": "Mental Health Research Center"
+    },
+    {
+      "name": "Lokopriya Gopinath Bordoloi Hospital",
+      "location": "Guwahati, Assam",
+      "contact": "+913612645772",
+      "type": "General Hospital"
+    },
+    {
+      "name": "AIIMS Bhubaneswar – Psychiatry Dept",
+      "location": "Odisha",
+      "contact": "+916742472400",
+      "type": "Psychiatric Hospital"
+    },
+    {
+      "name": "Fortis Mental Health Helpline",
+      "location": "Pan India",
+      "contact": "8376804102",
+      "type": "24x7 Mental Health Helpline"
+    },
+    {
+      "name": "Kiran National Mental Health Helpline",
+      "location": "All India",
+      "contact": "18005990019",
+      "type": "24x7 Mental Health Support"
+    }
+  ]
+}

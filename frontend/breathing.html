@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breathing Timer - Student Wellness Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Page Layout */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a2d2ff, #cdb4db);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    header {
+      position: absolute;
+      top: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      color: #ffffff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    
+    /* Breathing Section */
+    #breathing {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    #breathing h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .circle {
+      width: 180px;
+      height: 180px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 3px solid #ffffff;
+      border-radius: 50%;
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #fff;
+      animation: none;
+    }
+
+    @keyframes breatheIn {
+      from { transform: scale(1); }
+      to { transform: scale(1.3); }
+    }
+
+    @keyframes breatheOut {
+      from { transform: scale(1.3); }
+      to { transform: scale(1); }
+    }
+
+    /* Button */
+    #start-breathing {
+      background-color:#0077b6;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #start-breathing:hover {
+      background-color: #0077b6;
+      transform: scale(1.05);
+    }
+
+    /* Instruction Text */
+    #instruction {
+      font-size: 1.2rem;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Breathing Timer</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="quotes.html">Quotes</a> |
+      <a href="resources.html">Resources</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="breathing">
+      <h2>4-7-8 Breathing Exercise</h2>
+      <div class="circle" id="circle">Start</div>
+      <p id="instruction">Press start to begin</p>
+      <button id="start-breathing">Start Breathing Exercise</button>
+    </section>
+  </main>
+
+  <script>
+    const circle = document.getElementById("circle");
+    const instruction = document.getElementById("instruction");
+    const startButton = document.getElementById("start-breathing");
+
+    const inhaleTime = 4;
+    const holdTime = 7;
+    const exhaleTime = 8;
+
+    startButton.addEventListener("click", () => {
+      startButton.disabled = true;
+      instruction.textContent = "Starting...";
+      breathingCycle();
+      setInterval(breathingCycle, (inhaleTime + holdTime + exhaleTime) * 1000);
+    });
+
+    function breathingCycle() {
+      instruction.textContent = "Inhale deeply...";
+      circle.style.animation = "breatheIn 4s ease-in-out forwards";
+
+      setTimeout(() => {
+        instruction.textContent = "Hold your breath...";
+        circle.style.animation = "none";
+
+        setTimeout(() => {
+          instruction.textContent = "Exhale slowly...";
+          circle.style.animation = "breatheOut 8s ease-in-out forwards";
+        }, holdTime * 1000);
+      }, inhaleTime * 1000);
+    }
+  </script>
+</body>
+</html>
