@@ -9,7 +9,9 @@ const SQLiteStore = require('connect-sqlite3')(session);
 const db = require('./db'); // the file we created above
  
 const app = express();
+const path = require('path');
 const PORT = process.env.PORT || 5000;
+const FRONTEND_DIR = path.join(__dirname, '..', 'frontend');
 
 
 // ======= TEMP DEBUG HELPERS - paste right after your require(...) lines =======
@@ -174,42 +176,6 @@ app.get("/profile", requireAuth, (req, res) => {
   res.json({ success: true, user: req.session.username });
 });
 
-
-// 🌍 Global Search Route
-app.get("/search", (req, res) => {
-  const query = req.query.q?.toLowerCase() || "";
-  if (!query) return res.json({ results: [] });
-
-  const results = [];
-
-  // Load resources file
-  const resources = JSON.parse(fs.readFileSync("./resources.json", "utf8"));
-
-  // 🔹 Search in quotes
-  for (const [category, items] of Object.entries(quotes)) {
-    const match = items.filter(q => q.toLowerCase().includes(query));
-    if (match.length) results.push({ type: "Quote", category, data: match });
-  }
-
-  // 🔹 Search in resources
-  for (const [category, items] of Object.entries(resources)) {
-    if (category === "mindfulness" || category === "healthcare") {
-      const match = items.filter(i =>
-        Object.values(i).some(v => v.toString().toLowerCase().includes(query))
-      );
-      if (match.length) results.push({ type: category, category, data: match });
-    } else {
-      const match = items.filter(phase =>
-        phase.phase.toLowerCase().includes(query) ||
-        phase.steps.some(s => s.toLowerCase().includes(query))
-      );
-      if (match.length) results.push({ type: category, category, data: match });
-    }
-  }
-
-  res.json({ results });
-});
-
 // Helper: get user by username
 function getUserByUsername(username) {
   return new Promise((resolve, reject) => {
@@ -294,6 +260,21 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 });
+
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
+
+// then static serve and SPA fallback last
+app.use(express.static(FRONTEND_DIR));
+app.get('*', (req, res) => {
+  // prevent serving index for api paths:
+  if (req.path.startsWith('/api') || req.path.startsWith('/login') || req.path.startsWith('/register') || req.path.startsWith('/quotes') || req.path.startsWith('/resources')) {
+    return res.status(404).end();
+  }
+  res.sendFile(path.join(FRONTEND_DIR, 'index.html'));
+});
+
+
 
 // ✅ Start only one server
 app.listen(PORT, () => {

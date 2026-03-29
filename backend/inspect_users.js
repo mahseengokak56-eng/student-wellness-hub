@@ -1,0 +1,7 @@
+// backend/inspect_users.js
+const db = require('./db');
+db.all("SELECT id, username, email, password_hash, created_at FROM users ORDER BY id DESC", [], (err, rows) => {
+  if (err) { console.error('DB error', err); process.exit(1); }
+  console.table(rows);
+  process.exit(0);
+});

@@ -19,16 +19,27 @@
            <div class="container">
                <div class="card login-card">
                    <h3>Login</h3>
-                   <form action="#" method="post">
-                      <label for="username">Username</label>
-                      <input type="text" id="username" name="username" required>
+                   <form id="login-form" action="javascript:void(0);" method="post" autocomplete="on">
+                     <label for="username">Username</label>
+                     <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      required
+                      autocomplete="username"
+                      placeholder="Your username">
 
-                      <label for="password">Password</label>
-                      <input type="password" id="password" name="password" required>
-
-                      <button type="submit" class="login-button">Login</button>
-                   </form>
-                   <p>Don't have an account? <a href="register.html">Register here</a></p>
+                     <label for="password">Password</label>
+                     <input
+                     type="password"
+                     id="password"
+                     name="password"
+                     required
+                     autocomplete="current-password"
+                     placeholder="Your password">
+                     <button type="submit" class="login-button">Login</button>
+                    </form>
+                    <p>Don't have an account? <a href="register.html">Register here</a></p>
 
               </div>
            </div>

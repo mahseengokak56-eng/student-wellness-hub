@@ -1,83 +1,54 @@
-// script.js - REPLACE the previous contents with this single file
-
-/* ---------- Helpers ---------- */
-function log(...args) { console.log('[APP]', ...args); }
-function showMsg(text) { /* optional UI message; fallback to alert */ alert(text); }
-
-/* ---------- DOM ready ---------- */
+// script.js — clean single login handler + robust redirect
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form'); // make sure only one form on login page
-  if (!form) {
-    log('No form found on page.');
-    return;
-  }
+  const form = document.getElementById('login-form') || document.querySelector('form');
+  if (!form) return console.log('[APP] No login form found.');
 
-  // Prevent double-binding: remove existing listeners (defensive)
-  form.replaceWith(form.cloneNode(true));
-  const freshForm = document.querySelector('form');
+  // replace node to remove previous listeners
+  const cleanForm = form.cloneNode(true);
+  form.parentNode.replaceChild(cleanForm, form);
 
-  freshForm.addEventListener('submit', async function (e) {
+  cleanForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const usernameEl = document.getElementById('username');
-    const passwordEl = document.getElementById('password');
-    const username = usernameEl ? usernameEl.value.trim() : '';
-    const password = passwordEl ? passwordEl.value : '';
+    const username = (document.getElementById('username') || {}).value?.trim() || '';
+    const password = (document.getElementById('password') || {}).value || '';
+    if (!username || !password) { alert('Please enter username and password.'); return; }
 
-    if (!username || !password) {
-      showMsg('Please enter username and password.');
-      return;
-    }
+    console.log('[APP] Submitting login for', username);
 
-    log('Submitting login for', username);
-
-    // fetch with timeout helper
     const controller = new AbortController();
-    const timeout = setTimeout(() => {
-      controller.abort();
-    }, 10000); // 10s timeout to avoid hanging
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     try {
       const resp = await fetch('http://localhost:5000/login', {
         method: 'POST',
-        credentials: 'include', // must include so session cookie is stored
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
         signal: controller.signal
       });
-      clearTimeout(timeout);
+      clearTimeout(timeoutId);
 
-      log('[login] status', resp.status);
+      console.log('[APP] login response status:', resp.status);
+      const data = await resp.json().catch(() => null);
+      console.log('[APP] login response body:', data);
 
-      // try to parse JSON safely
-      let data = null;
-      try { data = await resp.json(); } catch (err) {
-        log('[login] failed to parse JSON:', err);
-      }
-
-      log('[login] response body:', data);
-
-      if (resp.ok) {
-        // success -> redirect to index.html (absolute path)
-        const redirectUrl = 'http://localhost:3000/index.html';
-        log('[login] login ok, redirecting to', redirectUrl);
-        // using replace so user can't go back to login easily
-        window.location.replace(redirectUrl);
+      if (!resp.ok) {
+        alert(data?.message || `Login failed (status ${resp.status})`);
         return;
       }
 
-      // if not ok, show server message if available
-      const msg = (data && data.message) ? data.message : `Login failed (status ${resp.status})`;
-      showMsg(msg);
+      // ——— REDIRECT ———
+      // try relative redirect first (works for Live Server and npx serve)
+      setTimeout(() => {
+        console.log('[APP] Redirecting (relative) -> index.html');
+        window.location.href = 'index.html';
+      }, 200);
+
     } catch (err) {
-      clearTimeout(timeout);
-      if (err.name === 'AbortError') {
-        log('[login] request timed out');
-        showMsg('Request timed out — server may be down or slow.');
-      } else {
-        log('[login] fetch error', err);
-        showMsg('Server error — check backend is running and CORS settings. See console for details.');
-      }
+      clearTimeout(timeoutId);
+      if (err.name === 'AbortError') alert('Request timed out. Try again.');
+      else { console.error('[APP] Login fetch error:', err); alert('Server error — check backend console.'); }
     }
   });
 });
