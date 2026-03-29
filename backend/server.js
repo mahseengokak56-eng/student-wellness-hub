@@ -261,7 +261,10 @@ app.post('/register', async (req, res) => {
   }
 });
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({
+  origin: "https://student-wellness-hub.vercel.app",
+  credentials: true
+}));
 
 
 // then static serve and SPA fallback last
