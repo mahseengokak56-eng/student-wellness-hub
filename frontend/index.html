@@ -1,88 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Wellness Hub</title>
-    <link rel="stylesheet" href="style.css">
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - Student Wellness Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .register-section { padding: 3rem 0; display:flex; justify-content:center; align-items:center; min-height:60vh; }
+    .register-card { max-width:420px; width:100%; padding:2rem; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.08); background:#fff; }
+    .register-card h3 { margin-bottom:1rem; color:#0077b6; }
+    .form-row { margin-bottom:12px; text-align:left; }
+    .form-row label { display:block; font-weight:600; margin-bottom:6px; }
+    .form-row input { width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; }
+    .register-button { background:#00b4d8; color:#fff; padding:12px; border-radius:8px; border:none; cursor:pointer; width:100%; font-weight:600; }
+    .register-button:hover { background:#0077b6; }
+    .small-link { text-align:center; margin-top:12px; }
+    #msg { margin-top:12px; text-align:center; color:#023e8a; }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="container">
+      <h1>Student Wellness Hub</h1>
+    </div>
+  </header>
 
-    <header>
-        
-        <div class="container">
-            <h1>Student Wellness Hub</h1>
-            <nav>
-                <ul>
-                    <li><a href="#breathing">Breathing Time</a></li>
-                    <li><a href="#quotes">Quotes</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <main>
+    <section class="register-section">
+      <div class="register-card">
+        <h3>Create account</h3>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2>Your Journey to Mental Well-being Starts Here</h2>
-                <p>A safe space for students to manage stress, connect with others, and find the support they need.</p>
-            </div>
-        </section>
+        <form id="regForm">
+          <div class="form-row">
+            <label for="username">Username</label>
+            <input id="username" name="username" required />
+          </div>
 
-        <section id="breathing" class="card-section">
-            <div class="container">
-                <h3>Take a Breathing Break</h3>
-                <div class="card">
-                    <div class="breathing-exercise">
-                        <h4>4-7-8 Breathing Technique</h4>
-                        <p>Inhale for 4, hold for 7, exhale for 8. A simple way to calm your nervous system.</p>
-                        <a href="breathing.html" class="breathing-button">Start Breathing Exercise</a>
+          <div class="form-row">
+            <label for="email">Email (optional)</label>
+            <input id="email" name="email" type="email" />
+          </div>
 
-                    </div>
-                </div>
-            </div>
-        </section>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required />
+          </div>
 
-        <section id="quotes" class="card-section light-bg">
-            <div class="container">
-                <h3>Read Quotes</h3>
-                <div class="card">
-                    <p>Give importance to Positive words.</p>
-                   <ul>
-                       <li><a href="quotes.html?category=motivation">Motivation</a></li>
-                       <li><a href="quotes.html?category=resilience">Resilience</a></li>
-                       <li><a href="quotes.html?category=balance">Balance and Well-being</a></li>
-                   </ul>
-                </div>
-            </div>
-        </section>
+          <button type="submit" class="register-button">Register</button>
+        </form>
 
+        <p id="msg"></p>
+        <p class="small-link">Already have an account? <a href="login.html">Login here</a></p>
+      </div>
+    </section>
+  </main>
 
-       <section id="resources" class="card-section">
-            <div class="container">
-                <h3>Extra Resources & Tools</h3>
-                <div class="card">
-                    <p>Explore articles, guides, and tools to help you manage your mental health.</p>
-                    <ul>
-                        <li><a href="resources.html?category=sleep">Sleep Management Guide </a></li>
-                        <li><a href="resources.html?category=study">Stress-Free Study Tips </a></li>
-                        <li><a href="resources.html?category=mindfulness">Mindfulness & Meditation Apps </a></li>
-                        <li><a href="resources.html?category=healthcare">Healthcare Helpline Numbers </a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Student Wellness Hub</p>
+    </div>
+  </footer>
 
-    </main>
+  <script>
+    const regForm = document.getElementById('regForm');
+    const msg = document.getElementById('msg');
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Student Wellness Hub. All Rights Reserved.</p>
-        </div>
-    </footer>
-    <script src="script.js"></script>
+    regForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = 'Registering...';
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
 
+      try {
+        const res = await fetch('http://localhost:5000/register', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: JSON.stringify({ username, email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          msg.style.color = '#117a65';
+          msg.textContent = data.message || 'Registration successful — redirecting to login...';
+          setTimeout(() => window.location.href = 'login.html', 900);
+        } else {
+          msg.style.color = '#b00020';
+          msg.textContent = data.message || 'Registration failed';
+        }
+      } catch (err) {
+        msg.style.color = '#b00020';
+        msg.textContent = 'Server error — please check server console or CORS settings.';
+        console.error('Register error:', err);
+      }
+    });
+  </script>
 </body>
 </html>
