@@ -217,7 +217,7 @@
       grid.innerHTML = "<p style='color:#1e3a5f'>Loading...</p>";
 
       try {
-        const res = await fetch(`http://localhost:5000/quotes/${category}`);
+        const res = await fetch(`https://student-wellness-hub.onrender.com/quotes/${category}`);
         quotes = await res.json();
         currentCategory = category;
         showQuotes();

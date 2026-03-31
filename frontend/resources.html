@@ -226,7 +226,7 @@
       content.innerHTML = "<p>🌸 Loading...</p>";
 
       try {
-        const res = await fetch(`http://localhost:5000/resources/${category}`);
+        const res = await fetch(`https://student-wellness-hub.onrender.com/resources/${category}`);
         const data = await res.json();
 
         // 🧘 Mindfulness apps

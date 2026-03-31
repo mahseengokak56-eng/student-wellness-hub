@@ -74,7 +74,7 @@
       const password = document.getElementById('password').value;
 
       try {
-        const res = await fetch('http://localhost:5000/register', {
+        const res = await fetch('https://student-wellness-hub.onrender.com/register', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include', // include cookies
